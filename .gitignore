@@ -1,0 +1,19 @@
+# Claude Code local settings
+.claude/
+
+# Environment variables (למקרה שיתווסף בעתיד)
+.env
+.env.local
+.env*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor directories
+.vscode/
+.idea/
+
+# Logs
+*.log
