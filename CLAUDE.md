@@ -270,6 +270,29 @@ App.fmtDate(iso)              // פורמט תאריך+שעה לעברית
 
 ---
 
+## Deploy
+
+### GitHub Pages (פרודקשן)
+- **URL:** `https://mehir7171.github.io/hapalday`
+- **Repository:** `https://github.com/mehir7171/hapalday`
+- **Auto-deploy:** כל `git push` ל-`main` → GitHub Pages מתעדכן אוטומטית תוך ~2 דקות
+
+### עדכון גרסה
+```bash
+cd d:/hapalday
+git add .
+git commit -m "תיאור השינוי"
+git push
+```
+
+### הפצה למשתמשים
+- שולחים את הכתובת בלבד: `https://mehir7171.github.io/hapalday`
+- כל משתמש מזין את מפתח ה-API שלו במסך הגדרות
+- נתונים (היסטוריה, לוג, מפתח) נשמרים ב-localStorage של הדפדפן האישי בלבד
+- ייצוא JSON/CSV מוריד קובץ למחשב המשתמש — לא קשור ל-Git
+
+---
+
 ## תקנון והגבלת אחריות
 
 ### שלב נוכחי:
