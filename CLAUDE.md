@@ -31,7 +31,7 @@
 |------|-----------|
 | Frontend | Vanilla JS — ללא frameworks |
 | עיצוב | CSS Variables (כמו הפרויקטור) + RTL מלא |
-| נתוני קטלוג | JSON מקומי (catalog.json) — 117 פרופילים |
+| נתוני קטלוג | JS מקומי (catalog.js) — 117 פרופילים, נטען כ-`CATALOG_DATA` גלובלי |
 | AI | Claude API — קריאה ישירה מהדפדפן (שלב נוכחי) |
 | מפתח API | נשמר ב-localStorage, מוזן ידנית במסך הגדרות |
 | Auth | Supabase — בהמשך (לא מומש עדיין) |
@@ -47,12 +47,14 @@
 hapalday/
 ├── index.html              # Shell: sidebar + header + content area + כל ה-CSS
 ├── app.js                  # App object: ניווט, קטלוג, API key, לוג שימוש, עזרים
-├── catalog.json            # 117 פרופילים — מקור האמת (JSON תקני, ללא הערות)
+├── catalog.js              # 117 פרופילים — מקור האמת (const CATALOG_DATA = {...})
+├── catalog.json            # גיבוי — לא בשימוש בזמן ריצה
 ├── CLAUDE.md               # הקובץ הזה
 └── modules/
     ├── search.js           # חיפוש ראשי: קלט + חילוץ מסמך + AI + בחירה + ייצוא
     ├── history.js          # היסטוריית חיפושים (localStorage)
-    ├── catalog-view.js     # תצוגת קטלוג + About (שני מודולים בקובץ אחד)
+    ├── catalog-view.js     # תצוגת קטלוג
+    ├── about.js            # מסך אודות
     └── settings.js         # מפתח API + לוג שימוש בטוקנים
 ```
 
@@ -60,7 +62,7 @@ hapalday/
 
 ---
 
-## מבנה catalog.json
+## מבנה catalog.js
 
 ```json
 {
@@ -84,7 +86,7 @@ hapalday/
 }
 ```
 
-**חשוב:** catalog.json חייב להיות JSON תקני לחלוטין — **ללא הערות `//`** ו**ללא גרשיים בודדים**. שניהם גורמים ל-`JSON.parse()` לכשול בשקט ולקטלוג להיות ריק.
+**חשוב:** catalog.js הוא קובץ JS רגיל עם `const CATALOG_DATA = {...}`. הוא נטען לפני `app.js` ב-index.html כך שהמשתנה זמין סינכרונית — ללא fetch, עובד גם ב-`file://` מקומי וגם ב-GitHub Pages.
 
 **סוגי פרופילים בקטלוג (117 סה"כ):**
 - IPE, HEA, HEB, HEM, IPN
