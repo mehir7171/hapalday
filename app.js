@@ -10,24 +10,20 @@ const App = (() => {
   let catalog = [];
 
   // ── Init ───────────────────────────────────────────────────
-  async function init() {
-    await loadCatalog();
+  function init() {
+    loadCatalog();
     navigate('search');
   }
 
   // ── Load Catalog ───────────────────────────────────────────
-  async function loadCatalog() {
-    try {
-      const res = await fetch('catalog.json');
-      const data = await res.json();
-      catalog = data.profiles.filter(p =>
-        // סנן פרופילים עם נתונים מלאים בלבד
-        p.Ix_cm4 !== null && p.ix_cm !== null
-      );
-    } catch (err) {
-      console.error('שגיאה בטעינת קטלוג:', err);
+  function loadCatalog() {
+    if (typeof CATALOG_DATA === 'undefined' || !CATALOG_DATA.profiles) {
       showToast('שגיאה בטעינת קטלוג הפרופילים', 'error');
+      return;
     }
+    catalog = CATALOG_DATA.profiles.filter(p =>
+      p.Ix_cm4 !== null && p.ix_cm !== null
+    );
   }
 
   // ── Navigate ────────────────────────────────────────────────
